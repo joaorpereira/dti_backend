@@ -13,7 +13,7 @@ class ProductsController {
 
   async getProduct(req: Request, res: Response): Promise<any> {
     try {
-      const {id} = req.params
+      const { id } = req.params
       const products = await ProductsViews.getProduct(id)
       res.status(200).send(products)
     } catch (error) {
@@ -25,6 +25,33 @@ class ProductsController {
     try {
       const { name, quantity, price }: InputProduct = req.body
       const message = await ProductsViews.create(name, quantity, price)
+      res.status(201).send(message)
+    } catch (error) {
+      res.status(400).send(error.message)
+    }
+  }
+
+  async update(req: Request, res: Response): Promise<void> {
+    try {
+      const { name, quantity, price }: InputProduct = req.body
+      const { id } = req.params
+      const message = await ProductsViews.update(
+        id as string,
+        name,
+        quantity,
+        price
+      )
+      res.status(201).send(message)
+    } catch (error) {
+      res.status(400).send(error.message)
+    }
+  }
+
+  async delete(req: Request, res: Response): Promise<any> {
+    try {
+      const { id } = req.params
+      console.log(id)
+      const message = await ProductsViews.delete(id)
       res.status(201).send(message)
     } catch (error) {
       res.status(400).send(error.message)

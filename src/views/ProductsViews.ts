@@ -19,7 +19,7 @@ class ProductsViews {
     }
   }
 
-  async getProduct(id : string): Promise<Product[]> {
+  async getProduct(id: string): Promise<Product> {
     let message = 'Product not found'
     let statusCode
     try {
@@ -49,6 +49,47 @@ class ProductsViews {
       const id = HashManager.generateId()
       await ProductsData.create(id, name, quantity, price)
       message = 'Product created'
+      return message
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
+  async update(
+    id: string,
+    name: string,
+    quantity: number,
+    price: number
+  ): Promise<string> {
+    let message = 'Product not found'
+    let statusCode
+
+    try {
+      if (!name || !quantity || !price) {
+        statusCode = 406
+        message = 'Nome, quantidade e preço são campos obrigatórios'
+        throw new Error(message)
+      }
+
+      await ProductsData.update(id, name, quantity, price)
+      message = 'Product updated'
+      return message
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
+  async delete(id: string): Promise<string> {
+    let message = 'Product not found'
+    let statusCode
+    try {
+      const product = await ProductsData.delete(id)
+
+      if (!product) {
+        statusCode = 400
+        throw new Error(message)
+      }
+      message = 'Product deleted'
       return message
     } catch (error) {
       throw new Error(error)
