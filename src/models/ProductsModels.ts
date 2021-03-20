@@ -4,3 +4,9 @@ export interface Product {
   quantity: number
   price: number
 }
+
+export interface InputProduct {
+  name: string
+  quantity: number
+  price: number
+}

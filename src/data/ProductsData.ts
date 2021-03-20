@@ -14,6 +14,27 @@ class ProductsData extends DataBase {
       throw new Error(error.sqlMessage || error.message)
     }
   }
+
+  async create(
+    id: string,
+    name: string,
+    quantity: number,
+    price: number
+  ): Promise<void> {
+    try {
+      await DataBase.connection.raw(`
+      INSERT INTO ${this.tableName} (id, name, quantity, price) 
+      VALUES ( 
+        "${id}", 
+        "${name}", 
+        ${quantity}, 
+        ${price}
+      );    
+    `)
+    } catch (error) {
+      throw new Error(error.sqlMessage || error.message)
+    }
+  }
 }
 
 export default new ProductsData()

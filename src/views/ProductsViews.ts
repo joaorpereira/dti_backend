@@ -1,5 +1,6 @@
 import ProductsData from '../data/ProductsData'
 import { Product } from '../models/ProductsModels'
+import HashManager from '../middlewares/generateID'
 
 class ProductsViews {
   async getProducts(): Promise<Product[]> {
@@ -13,6 +14,26 @@ class ProductsViews {
         throw new Error(message)
       }
       return products
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
+  async create(name: string, quantity: number, price: number): Promise<string> {
+    let message = 'Account balance not found'
+    let statusCode
+
+    try {
+      if (!name || !quantity || !price) {
+        statusCode = 406
+        message = 'Nome, quantidade e preço são campos obrigatórios'
+        throw new Error(message)
+      }
+
+      const id = HashManager.generateId()
+      await ProductsData.create(id, name, quantity, price)
+      message = 'Product created'
+      return message
     } catch (error) {
       throw new Error(error)
     }
