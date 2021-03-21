@@ -57,3 +57,29 @@ export function removeProduct(state = INITIAL_STATE, action) {
     }
   })
 }
+
+export function createProduct(state = INITIAL_STATE, action) {
+  return produce(state, draft => {
+    switch (action.type) {
+      case types.REQUEST_CREATE_PRODUCT: {
+        draft.loading = true
+        break
+      }
+      case types.REQUEST_CREATE_PRODUCT_SUCCESS: {
+        const product = action.payload.product
+        const products = state.products
+        draft.loading = false
+        draft.success = true
+        draft.products = [...products, product]
+        break
+      }
+      case types.REQUEST_CREATE_PRODUCT_FAIL: {
+        draft.loading = false
+        draft.success = false
+        draft.products = []
+        break
+      }
+      default:
+    }
+  })
+}

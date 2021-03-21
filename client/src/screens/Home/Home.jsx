@@ -8,9 +8,11 @@ import {
   requestRemoveProduct,
 } from '../../store/modules/Products/actions'
 import { Container, Box } from './styled'
+import { useHistory } from 'react-router'
 
 const Home = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
   const { products, loading } = useSelector(state => state.products)
 
   useEffect(() => {
@@ -26,7 +28,10 @@ const Home = () => {
     <Container>
       <Row>
         <h1>Meu Estoque</h1>
-        <Button color='cadastrar' onClick={() => null}>
+        <Button
+          color='cadastrar'
+          onClick={() => history.push('/cadastrar')}
+        >
           Cadastrar
         </Button>
       </Row>

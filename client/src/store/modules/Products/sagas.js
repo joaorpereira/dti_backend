@@ -18,9 +18,21 @@ function* requestProductsList() {
 
 function* removeProduct({ payload: id }) {
   try {
-    const { data } = yield call(axios.delete, `/products/${id}`)
-    yield put(actions.requestRemoveProductSuccess(data))
+    yield call(axios.delete, `/products/${id}`)
+    yield put(actions.requestRemoveProductSuccess())
     toast.success('Produto removido com sucesso')
+  } catch (error) {
+    toast.error('O produto não foi encontrado')
+    yield put(actions.requestRemoveProductFail(error))
+  }
+}
+
+function* createProduct({ payload }) {
+  try {
+    const response = yield call(axios.post, '/products', payload)
+    console.log(response)
+    yield put(actions.requestRemoveProductSuccess(response))
+    toast.success('Produto criado com sucesso')
   } catch (error) {
     toast.error('O produto não foi encontrado')
     yield put(actions.requestProductsListFail(error))
@@ -30,4 +42,5 @@ function* removeProduct({ payload: id }) {
 export default all([
   takeLatest(types.REQUEST_PRODUCTS_LIST, requestProductsList),
   takeLatest(types.REQUEST_REMOVE_PRODUCT, removeProduct),
+  takeLatest(types.REQUEST_CREATE_PRODUCT, createProduct),
 ])

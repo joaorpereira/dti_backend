@@ -1,12 +1,12 @@
 import { Switch, Route } from 'react-router-dom'
 import Home from '../screens/Home/Home'
-// import Editar from '../screens/Editar/Editar'
+import CreateProduct from '../screens/CreateProduct/CreateProduct'
 
 export default function Routes() {
   return (
     <Switch>
       <Route exact path={['/', '/home']} component={Home} />
-      {/* <Route path={'/editar'} component={Editar} /> */}
+      <Route path={'/cadastrar'} component={CreateProduct} />
     </Switch>
   )
 }

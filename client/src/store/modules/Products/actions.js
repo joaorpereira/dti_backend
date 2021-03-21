@@ -21,7 +21,6 @@ export function requestProductsListFail() {
 }
 
 export function requestRemoveProduct(id) {
-  console.log('action', id)
   return {
     type: types.REQUEST_REMOVE_PRODUCT,
     payload: id,
@@ -31,13 +30,30 @@ export function requestRemoveProduct(id) {
 export function requestRemoveProductSuccess() {
   return {
     type: types.REQUEST_REMOVE_PRODUCT_SUCCESS,
-    // payload: { products },
   }
 }
 
 export function requestRemoveProductFail() {
   return {
     type: types.REQUEST_REMOVE_PRODUCT_FAIL,
-    // payload: {},
+  }
+}
+
+export function requestCreateProduct(product) {
+  return {
+    type: types.REQUEST_CREATE_PRODUCT,
+    payload: product,
+  }
+}
+
+export function requestCreateProductSuccess() {
+  return {
+    type: types.REQUEST_CREATE_PRODUCT_SUCCESS,
+  }
+}
+
+export function requestCreateProductFail() {
+  return {
+    type: types.REQUEST_CREATE_PRODUCT_FAIL,
   }
 }

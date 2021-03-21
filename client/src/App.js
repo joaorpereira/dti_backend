@@ -17,7 +17,7 @@ function App() {
         <Router>
           <ThemeProvider theme={theme}>
             <GlobalStyle />
-            <ToastContainer />
+            <ToastContainer autoClose={3000}/>
             <Navbar />
             <Routes />
           </ThemeProvider>
