@@ -34,23 +34,3 @@ export const RowInfo = styled.div`
   justify-content: space-between;
   width: 250px;
 `
-
-export const Button = styled.button`
-  text-transform: uppercase;
-  margin: 0 5px;
-  font-weight: bold;
-  font-size: 0.7rem;
-  letter-spacing: 0.05rem;
-  padding: 0.5rem 0.7rem;
-  border-radius: 4px;
-  color: ${props => props.theme.colors.white};
-  transition: 0.3s ;
-  background-color: ${props =>
-    props.color === 'editar'
-      ? props.theme.colors.info
-      : props.theme.colors.warning};
-  &:hover {
-    transform: scale(1.1);
-    font-weight: bold;
-  }
-`

@@ -1,4 +1,5 @@
-import { Button, Card, Row, RowInfo } from './styled'
+import Button from '../Button/Button'
+import { Card, Row, RowInfo } from './styled'
 
 const CardInfo = ({ id, name, price, quantity, onDelete, onUpdate }) => {
   return (

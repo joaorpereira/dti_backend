@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CardInfo from '../../components/CardInfo/CardInfo'
-import { Button, Row } from './styled'
+import Button from '../../components/Button/Button'
+import { Row } from './styled'
 
 import {
   requestProductsList,
@@ -28,10 +29,7 @@ const Home = () => {
     <Container>
       <Row>
         <h1>Meu Estoque</h1>
-        <Button
-          color='cadastrar'
-          onClick={() => history.push('/cadastrar')}
-        >
+        <Button color='cadastrar' onClick={() => history.push('/cadastrar')}>
           Cadastrar
         </Button>
       </Row>
