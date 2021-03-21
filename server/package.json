@@ -6,21 +6,29 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc && node build/index.js",
-    "dev": "ts-node-dev src/index.ts"
+    "dev": "ts-node-dev src/index.ts",
+    "create-table": "ts-node-dev ./src/mySQL.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/cors": "^2.8.9",
+    "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.11",
+    "@types/knex": "^0.16.1",
     "i": "^0.3.6",
     "npm": "^7.5.4",
     "ts-node-dev": "^1.1.1",
     "typescript": "^4.1.5"
   },
   "dependencies": {
+    "@types/uuid": "^8.3.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "knex": "^0.95.2",
+    "mysql": "^2.18.1",
+    "uuid": "^8.3.2"
   }
 }
