@@ -1,13 +1,10 @@
 import React from 'react'
-import { FormControl, Button } from './styled'
+import { FormControl } from './styled'
 
 const Form = ({ children, onSubmit }) => {
   return (
     <FormControl type='submit' onSubmit={onSubmit}>
       {children}
-      <Button color='cadastrar' type='submit'>
-        Enviar
-      </Button>
     </FormControl>
   )
 }

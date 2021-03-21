@@ -7,6 +7,7 @@ import { Row } from './styled'
 import {
   requestProductsList,
   requestRemoveProduct,
+  requestProduct,
 } from '../../store/modules/Products/actions'
 import { Container, Box } from './styled'
 import { useHistory } from 'react-router'
@@ -14,7 +15,7 @@ import { useHistory } from 'react-router'
 const Home = () => {
   const dispatch = useDispatch()
   const history = useHistory()
-  const { products, loading } = useSelector(state => state.products)
+  const { products, loading, success } = useSelector(state => state.products)
 
   useEffect(() => {
     dispatch(requestProductsList())
@@ -24,7 +25,13 @@ const Home = () => {
     dispatch(requestRemoveProduct(id))
   }
 
-  const handleUpdate = async id => {}
+  const handleUpdate = id => {
+    dispatch(requestProduct(id))
+    if (success) {
+      history.push(`/editar/${id}`)
+    }
+  }
+
   return (
     <Container>
       <Row>

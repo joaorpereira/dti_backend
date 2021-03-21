@@ -1,43 +1,46 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Form from '../../components/Form/Form'
 import { toast } from 'react-toastify'
-
+import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
 import { Container, Divider, Row } from './styled'
-import { requestCreateProduct } from '../../store/modules/Products/actions'
+import { requestUpdateProduct } from '../../store/modules/Products/actions'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
-import Button from '../../components/Button/Button'
 
-const CreateProduct = () => {
+const UpdateProduct = () => {
   const dispatch = useDispatch()
-  const history = useHistory()
   const [name, setName] = useState('')
   const [quantity, setQuantity] = useState('')
   const [price, setPrice] = useState('')
 
-  const { success } = useSelector(state => state.products)
+  const { success, product } = useSelector(state => state.products)
 
-  const handleForm = e => {
+  useEffect(() => {
+    if (product) {
+      setName(product.name)
+      setQuantity(product.quantity)
+      setPrice(product.price)
+    }
+  }, [product, dispatch])
+
+  const handleFormUpdate = e => {
     e.preventDefault()
     if (!name && !quantity && !price) {
       return toast.error('Campos nome, quantidade e preço são obrigatórios')
     }
+    const id = product.id
     const body = { name, quantity, price }
-    if (body) {
-      dispatch(requestCreateProduct(body))
-      if (success) {
-        history.push('/home')
-      }
+    if (body && id) {
+      dispatch(requestUpdateProduct(body, id))
     }
   }
 
   return (
     <Container>
       <Row>
-        <h1>Cadastrar Produto</h1>
+        <h1>Editar Produto</h1>
       </Row>
-      <Form onSubmit={e => handleForm(e)}>
+      <Form onSubmit={e => handleFormUpdate(e)}>
         <Input
           type={'text'}
           name={'name'}
@@ -63,11 +66,11 @@ const CreateProduct = () => {
         />
         <Divider />
         <Button form color='cadastrar' type='submit'>
-          Enviar
+          Atualizar
         </Button>
       </Form>
     </Container>
   )
 }
 
-export default CreateProduct
+export default UpdateProduct

@@ -30,7 +30,7 @@ export function requestRemoveProduct(id) {
 export function requestRemoveProductSuccess(id) {
   return {
     type: types.REQUEST_REMOVE_PRODUCT_SUCCESS,
-    payload: id
+    payload: id,
   }
 }
 
@@ -56,5 +56,44 @@ export function requestCreateProductSuccess() {
 export function requestCreateProductFail() {
   return {
     type: types.REQUEST_CREATE_PRODUCT_FAIL,
+  }
+}
+
+export function requestUpdateProduct(body, id) {
+  return {
+    type: types.REQUEST_UPDATE_PRODUCT,
+    payload: { body, id },
+  }
+}
+
+export function requestUpdateProductSuccess() {
+  return {
+    type: types.REQUEST_UPDATE_PRODUCT_SUCCESS,
+  }
+}
+
+export function requestUpdateProductFail() {
+  return {
+    type: types.REQUEST_UPDATE_PRODUCT_FAIL,
+  }
+}
+
+export function requestProduct(id) {
+  return {
+    type: types.REQUEST_PRODUCT,
+    payload: id,
+  }
+}
+
+export function requestProductSuccess(products) {
+  return {
+    type: types.REQUEST_PRODUCT_SUCCESS,
+    payload: { products },
+  }
+}
+
+export function requestProductFail() {
+  return {
+    type: types.REQUEST_PRODUCT_FAIL,
   }
 }

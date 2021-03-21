@@ -38,8 +38,32 @@ function* createProduct({ payload }) {
   }
 }
 
+function* updateProduct({ payload }) {
+  const { id, body } = payload
+  try {
+    yield call(axios.put, `/products/${id}`, body)
+    yield put(actions.requestUpdateProductSuccess())
+    toast.success('Produto atualizado com sucesso')
+  } catch (error) {
+    toast.error('O produto não foi atualizado')
+    yield put(actions.requestUpdateProductFail(error))
+  }
+}
+
+function* requestProduct({ payload: id }) {
+  try {
+    const { data } = yield call(axios.get, `/products/${id}`)
+    yield put(actions.requestProductSuccess(data[0]))
+  } catch (error) {
+    toast.error('O produto não foi encontrado')
+    yield put(actions.requestProductFail(error))
+  }
+}
+
 export default all([
   takeLatest(types.REQUEST_PRODUCTS_LIST, requestProductsList),
   takeLatest(types.REQUEST_REMOVE_PRODUCT, removeProduct),
   takeLatest(types.REQUEST_CREATE_PRODUCT, createProduct),
+  takeLatest(types.REQUEST_UPDATE_PRODUCT, updateProduct),
+  takeLatest(types.REQUEST_PRODUCT, requestProduct),
 ])

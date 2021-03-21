@@ -10,24 +10,3 @@ export const FormControl = styled.form`
   padding: 30px;
   margin-top: 2rem;
 `
-export const Button = styled.button`
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 1rem;
-  letter-spacing: 0.05rem;
-  padding: 0.6rem 0.7rem;
-  margin-top: 30px;
-  border-radius: 4px;
-  color: ${props => props.theme.colors.white};
-  transition: 0.3s;
-  background-color: ${props =>
-    props.color === 'editar'
-      ? props.theme.colors.info
-      : props.color === 'cadastrar'
-      ? props.theme.colors.success
-      : props.theme.colors.warning};
-  &:hover {
-    transform: scale(1.1);
-    font-weight: bold;
-  }
-`
