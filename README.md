@@ -127,7 +127,8 @@ $ npm run dev
     id VARCHAR(255) PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     quantity INT DEFAULT 0,                
-    price FLOAT DEFAULT 0
+    price FLOAT DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 ```
 ---
 
